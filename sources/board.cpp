@@ -20,7 +20,7 @@
             } 
         }
 
-        void define_board(t_piece board[8][8])
+        void define_board(t_piece **board)
         {
             int i;
             int j;

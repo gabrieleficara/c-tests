@@ -4,11 +4,10 @@ int main() {
     int i;
     int j;
     t_piece board[8][8];
-    c_board boa;
 
     i = 0;
     j = 0;
-    boa.define_board(board);
+    define_board((t_piece **)board);
     while (j < 8)
     {
         while (i < 8)
