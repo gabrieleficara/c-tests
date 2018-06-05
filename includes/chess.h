@@ -9,12 +9,8 @@ typedef struct  s_piece
     int player;
 }               t_piece;
 
-class c_board
-{
-    private:
-        void define_line(t_piece board[8], int player);
-    public:
-        void define_board(t_piece board[8][8]);
-};
+
+        void define_line(t_piece *board, int player);
+        void define_board(t_piece **board);
 
 #endif
