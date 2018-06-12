@@ -1,27 +1,16 @@
 #include "chess.h"
 
 int main() {
-    int i;
-    int j;
+    int end;
+    std::string player[2];
     c_board n_board;
 
-
-    define_board(board);
-    i = 0;
-    j = 0;
-    while (j < 8)
-    {
-        while (i < 8)
-        {
-            std::cout << board[j][i].name;
-            i++;
-        }
-        i = 0;
-        std::cout << std::endl;
-        j++;
-    }
-    for(int i = 0; i < 8; i++)
-        delete board[i];
-    delete board;
+    end = 0;
+    
+    std::cout << "Enter player 1 name: ";
+    std::getline(std::cin, player[0]);
+    std::cout << "Enter player 2 name: ";
+    std::getline(std::cin, player[1]);
+    n_board.print_board();
     return 0;
 }

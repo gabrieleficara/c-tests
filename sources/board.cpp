@@ -20,7 +20,7 @@ void c_board::define_line(c_piece *board, int player)
     } 
 }
 
-void c_board::define_board(t_piece **board)
+void c_board::define_board(void)
 {
     int i;
     int j;
@@ -38,22 +38,55 @@ void c_board::define_board(t_piece **board)
     }
 }
 
-void c_board::c_board(void)
+void    c_board::print_board(void)
 {
-    c_board.board = new c_piece *[8];
-    for(int i = 0; i < 8; i++)
-        c_board.board[i] = new c_piece [8];
+    int i;
+    int j;
+
     i = 0;
     j = 0;
     while (j < 8)
     {
         while (i < 8)
         {
-            c_board:board[j][i].name = '.';
-            c_board:board[j][i].player = 0;
+            std::cout << board[j][i].name;
+            i++;
+        }
+        i = 0;
+        std::cout << std::endl;
+        j++;
+    }
+}
+
+c_board::c_board(void)
+{
+    int i;
+    int j;
+
+    board = new c_piece *[8];
+    for(int i = 0; i < 8; i++)
+        board[i] = new c_piece [8];
+    i = 0;
+    j = 0;
+    while (j < 8)
+    {
+        while (i < 8)
+        {
+            board[j][i].name = '.';
+            board[j][i].player = 0;
             i++;
         }
         i = 0;
         j++;
     }
+    define_board();
+}
+
+c_board::~c_board(void)
+{
+    int i;
+
+    for(int i = 0; i < 8; i++)
+        delete board[i];
+    delete board;
 }
