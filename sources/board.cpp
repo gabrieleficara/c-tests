@@ -16,6 +16,10 @@ void c_board::define_line(c_piece *board, int player)
     while (i < 8)
     {
         board[i].player = player;
+        if (player == 1)
+            board[i].color = 37;
+        else
+            board[i].color = 30;
         i++;
     } 
 }
@@ -34,6 +38,8 @@ void c_board::define_board(void)
         board[6][i].name = 'p';
         board[1][i].player = 1;
         board[6][i].player = 2;
+        board[1][i].color = 37;
+        board[6][i].color = 30;
         i++;
     }
 }
@@ -42,6 +48,7 @@ void    c_board::print_board(void)
 {
     int i;
     int j;
+    int b_color;
 
     i = 0;
     j = 0;
@@ -49,11 +56,16 @@ void    c_board::print_board(void)
     {
         while (i < 8)
         {
+            b_color = ((i + j) % 2 == 0) ? 46 : 44;
+            if (board[j][i].color == 0)
+                std::cout << "\033["<<  b_color << ";" << b_color - 10 <<"m";
+            else
+                std::cout << "\033["<<  b_color << ";" << board[j][i].color <<"m";
             std::cout << board[j][i].name;
             i++;
         }
         i = 0;
-        std::cout << std::endl;
+        std::cout << "\033[0mw" << std::endl;
         j++;
     }
 }
@@ -62,6 +74,7 @@ c_board::c_board(void)
 {
     int i;
     int j;
+    int color;
 
     board = new c_piece *[8];
     for(int i = 0; i < 8; i++)
@@ -70,10 +83,12 @@ c_board::c_board(void)
     j = 0;
     while (j < 8)
     {
+
         while (i < 8)
         {
             board[j][i].name = '.';
             board[j][i].player = 0;
+            board[j][i].color = 0;
             i++;
         }
         i = 0;
