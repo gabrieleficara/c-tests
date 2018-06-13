@@ -13,9 +13,9 @@ int main() {
         if (player[end][0] && player[end][0] != '\n')
             end++;
     }
+    n_board.print_board();
     end = 1;
     while (end)
-        end = 0;
-    n_board.print_board();
+        end = n_board.turn(end, player);
     return 0;
 }

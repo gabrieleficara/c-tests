@@ -51,9 +51,11 @@ void    c_board::print_board(void)
     int b_color;
 
     i = 0;
-    j = 0;
-    while (j < 8)
+    j = 7;
+    std::cout << " abcdefgh" << std::endl;
+    while (j >= 0)
     {
+        std::cout << j + 1;
         while (i < 8)
         {
             b_color = ((i + j) % 2 == 0) ? 46 : 44;
@@ -65,9 +67,10 @@ void    c_board::print_board(void)
             i++;
         }
         i = 0;
-        std::cout << "\033[0mw" << std::endl;
-        j++;
+        std::cout << "\033[0m" << j + 1 << std::endl;
+        j--;
     }
+    std::cout << " abcdefgh" << std::endl;
 }
 
 c_board::c_board(void)

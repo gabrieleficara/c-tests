@@ -7,7 +7,8 @@ INC = -I includes
 CC = g++ -g
 
 SRC = sources/board.cpp \
-	  sources/main.cpp
+	  sources/main.cpp \
+	  sources/turn.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
