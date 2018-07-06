@@ -20,7 +20,7 @@ void c_board::define_line(c_piece *board, int player)
             board[i].color = 37;
         else
             board[i].color = 30;
-        i++;
+        i++; 
     } 
 }
 

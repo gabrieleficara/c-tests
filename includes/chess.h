@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib>
 
 class c_piece
 {
@@ -15,6 +16,7 @@ class c_piece
 using namespace std;
 class c_board
 {
+
     public:
         c_piece **board;
                 c_board(void);
