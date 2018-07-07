@@ -21,7 +21,7 @@ $(NAME) :$(OBJ) Makefile
 	@echo "creating chess"
 
 %.o: %.cpp
-	$(CC) $(INC) -o $@ -c $<
+	@$(CC) $(INC) -o $@ -c $<
 
 all : $(NAME)
 

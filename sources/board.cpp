@@ -79,21 +79,16 @@ c_board::c_board(void)
     int j;
     int color;
 
-    board = new c_piece *[8];
+    board = new c_piece **[8];
     for(int i = 0; i < 8; i++)
-        board[i] = new c_piece [8];
+        board[i] = new c_piece *[8];
     i = 0;
     j = 0;
     while (j < 8)
     {
 
         while (i < 8)
-        {
-            board[j][i].name = '.';
-            board[j][i].player = 0;
-            board[j][i].color = 0;
-            i++;
-        }
+            board[j][i++] = &(pieces->empty);
         i = 0;
         j++;
     }
@@ -107,4 +102,16 @@ c_board::~c_board(void)
     for(int i = 0; i < 8; i++)
         delete board[i];
     delete board;
+}
+
+c_piece::c_piece
+{
+    name = '.';
+    player = 0;
+    color = 0;
+}
+
+c_king::c_king
+{
+    name = 'K';
 }
