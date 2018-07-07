@@ -1,25 +1,39 @@
 #include "chess.h"
 
-void c_board::define_line(c_piece *board, int player)
+void c_board::define_line(c_piece **board, int player)
 {
     int i;
 
     i = 0;
-    board[0].name = 'r';
-    board[1].name = 'k';
-    board[2].name = 'b';
-    board[3].name = 'q';
-    board[4].name = 'K';
-    board[5].name = 'b';
-    board[6].name = 'k';
-    board[7].name = 'r';
+    if (player == 1)
+    {
+        board[0] = &(pieces.w_rooks);
+        board[1] = &(pieces.w_knights);
+        board[2] = &(pieces.w_bishops);
+        board[3] = &(pieces.w_queens);
+        board[4] = &(pieces.w_kings);
+        board[5] = &(pieces.w_bishops);
+        board[6] = &(pieces.w_knights);
+        board[7] = &(pieces.w_rooks);
+    }
+    else
+    {
+        board[0] = &(pieces.b_rooks);
+        board[1] = &(pieces.b_knights);
+        board[2] = &(pieces.b_bishops);
+        board[3] = &(pieces.b_queens);
+        board[4] = &(pieces.b_kings);
+        board[5] = &(pieces.b_bishops);
+        board[6] = &(pieces.b_knights);
+        board[7] = &(pieces.b_rooks);
+    }
     while (i < 8)
     {
-        board[i].player = player;
+        board[i]->player = player;
         if (player == 1)
-            board[i].color = 37;
+            board[i]->color = 37;
         else
-            board[i].color = 30;
+            board[i]->color = 30;
         i++; 
     } 
 }
@@ -34,12 +48,12 @@ void c_board::define_board(void)
     define_line(board[7], 2);
     while (i < 8)
     {
-        board[1][i].name = 'p';
-        board[6][i].name = 'p';
-        board[1][i].player = 1;
-        board[6][i].player = 2;
-        board[1][i].color = 37;
-        board[6][i].color = 30;
+        board[1][i] = &(pieces.w_pawns);
+        board[6][i] = &(pieces.b_pawns);
+        board[1][i]->player = 1;
+        board[6][i]->player = 2;
+        board[1][i]->color = 37;
+        board[6][i]->color = 30;
         i++;
     }
 }
@@ -59,11 +73,11 @@ void    c_board::print_board(void)
         while (i < 8)
         {
             b_color = ((i + j) % 2 == 0) ? 46 : 44;
-            if (board[j][i].color == 0)
+            if (board[j][i]->color == 0)
                 std::cout << "\033["<<  b_color << ";" << b_color - 10 <<"m";
             else
-                std::cout << "\033["<<  b_color << ";" << board[j][i].color <<"m";
-            std::cout << board[j][i].name;
+                std::cout << "\033["<<  b_color << ";" << board[j][i]->color <<"m";
+            std::cout << board[j][i]->name;
             i++;
         }
         i = 0;
@@ -71,47 +85,4 @@ void    c_board::print_board(void)
         j--;
     }
     std::cout << " abcdefgh" << std::endl;
-}
-
-c_board::c_board(void)
-{
-    int i;
-    int j;
-    int color;
-
-    board = new c_piece **[8];
-    for(int i = 0; i < 8; i++)
-        board[i] = new c_piece *[8];
-    i = 0;
-    j = 0;
-    while (j < 8)
-    {
-
-        while (i < 8)
-            board[j][i++] = &(pieces->empty);
-        i = 0;
-        j++;
-    }
-    define_board();
-}
-
-c_board::~c_board(void)
-{
-    int i;
-
-    for(int i = 0; i < 8; i++)
-        delete board[i];
-    delete board;
-}
-
-c_piece::c_piece
-{
-    name = '.';
-    player = 0;
-    color = 0;
-}
-
-c_king::c_king
-{
-    name = 'K';
 }

@@ -12,7 +12,7 @@ void c_board::retrive_data(int coor[2], int turn)
             {
                 coor[0] = command[0] - 97;
                 coor[1] = command[1] - 49;
-                if (board[coor[1]][coor[0]].player == turn)
+                if (board[coor[1]][coor[0]]->player == turn)
                     break;
             }
         std::cout << "i don't understand, can you repeat please?" << endl;
@@ -24,14 +24,10 @@ int c_board::end_move(int coor[2], int dest[2])
     int ret;
 
     ret = 1;
-    if (board[dest[1]][dest[0]].name == 'K')
+    if (board[dest[1]][dest[0]]->name == 'K')
         ret = 2;
-    board[dest[1]][dest[0]].name = board[coor[1]][coor[0]].name;
-    board[coor[1]][coor[0]].name = '.';
-    board[dest[1]][dest[0]].color = board[coor[1]][coor[0]].color;
-    board[coor[1]][coor[0]].color = 0;
-    board[dest[1]][dest[0]].player = board[coor[1]][coor[0]].player;
-    board[coor[1]][coor[0]].player = 0;
+    board[dest[1]][dest[0]] = board[coor[1]][coor[0]];
+    board[coor[1]][coor[0]] = &(pieces.empty);
     print_board();
     return (ret);
 }
@@ -49,7 +45,7 @@ int c_board::move(int coor[2], int turn)
             {
                 dest[0] = command[0] - 97;
                 dest[1] = command[1] - 49;
-                if (board[dest[1]][dest[0]].player != turn || !(dest[1] == coor[1] && dest[0] == coor[0]))
+                if (board[dest[1]][dest[0]]->player != turn || !(dest[1] == coor[1] && dest[0] == coor[0]))
                     break;
             }
         if (!command.compare("back"))

@@ -5,49 +5,55 @@
 # include <string>
 # include <cstdlib>
 
+using namespace std;
 class c_piece
 {
     public:
         char name;
         int player;
         int color;
-            c_piece;
+            c_piece(void);
 };
 
 class c_king : public c_piece
 {
     public:
-            c_king;
+            c_king(void);
     private:
         int castling;
-}
+};
 
 class c_queen : public c_piece
 {
     public:
-}
+            c_queen(void);
+};
 
 class c_knight : public c_piece
 {
     public:
-}
+            c_knight(void);
+};
 
 class c_rook : public c_piece
 {
     public:
-}
+            c_rook(void);
+};
 
 class c_bishop : public c_piece
 {
     public:
-}
+            c_bishop(void);
+};
 
 class c_pawn : public c_piece
 {
     public:
-}
+        c_pawn(void);
+};
 
-typedef struct  s_pieces;
+typedef struct  s_pieces
 {
     c_king w_kings;
     c_queen w_queens;
@@ -77,7 +83,7 @@ class c_board
         int     end_move(int coor[2], int dest[2]);
     private:
         t_pieces pieces;
-        void    define_line(c_piece *board, int player);
+        void    define_line(c_piece **board, int player);
         int     move(int coor[2], int turn);
         void    retrive_data(int coor[2], int turn);
 };

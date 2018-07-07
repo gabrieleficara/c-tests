@@ -8,7 +8,8 @@ CC = g++ -g
 
 SRC = sources/board.cpp \
 	  sources/main.cpp \
-	  sources/turn.cpp
+	  sources/turn.cpp \
+	  sources/init.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
