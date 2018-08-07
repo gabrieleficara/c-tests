@@ -42,6 +42,10 @@ int     c_board::move(c_pawn pawn, int coor[2], int dest[2])
     dir = (board[coor[1]][coor[0]]->player == 1) ? 1 : -1;
     if (dest[1] == coor[1] + dir && dest[0] == coor[0])
         return (1);
+    if (dest[1] == coor[1] + dir && abs(dest[0] - coor[0]) == 1 && 
+        (board[dest[1]][dest[0]]->player != pawn.player ||
+        board[dest[1]][dest[0]]->player != 0))
+        return (1);
     return (0);
 }
 
