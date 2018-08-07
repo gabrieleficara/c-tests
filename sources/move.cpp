@@ -1,0 +1,85 @@
+#include"chess.h"
+
+void    c_board::init_move(int a, int b, int tmp[2])
+{
+    if (a < b)
+    {
+        tmp[0] = a + 1;
+        tmp[1] = b;    
+    }
+    else 
+    {
+        tmp[0] = b + 1;
+        tmp[1] = a;    
+    }
+}
+
+int     c_board::o_move(int coor[2], int dest[2])
+{
+    int tmp[2];
+
+    if (coor[1] != dest[1])
+        return (0);
+    init_move(coor[0], dest[0], tmp);
+    while (tmp[0] < tmp[1])
+    {
+        if (board[coor[1]][tmp[0]]->name != '.')
+            return (0);
+        tmp[0]++;
+    }
+    return (1);
+}
+
+int     c_board::v_move(int coor[2], int dest[2])
+{
+    int tmp[2];
+
+    if (coor[0] != dest[0])
+        return (0);
+    init_move(coor[1], dest[1], tmp);
+    while (tmp[0] < tmp[1])
+    {
+        if (board[tmp[0]][coor[0]]->name != '.')
+            return (0);
+        tmp[0]++;
+    }
+    return (1);
+}
+
+int     c_board::k_move(int coor[2], int dest[2])
+{
+    int tmp[2];
+
+    tmp[0] = abs(coor[0] - dest[0]);
+    tmp[1] = abs(coor[1] - dest[1]);
+    if (tmp[0] == 0 || tmp[1] == 0)
+        return (0);
+    if (tmp[0] + tmp[1] == 3)
+        return (1);
+    return(0);
+}
+
+int     c_board::d_move(int coor[2], int dest[2])
+{
+    int tmp[2];
+    int sign[2];
+
+    tmp[0] = dest[0] - coor[0];
+    tmp[1] = dest[1] - coor[1];
+    if (abs(tmp[0]) != abs(tmp[1]) || tmp[0] == 0)
+        return (0);
+    sign[0] = (tmp[0] < 0) ? 1 : -1;
+    sign[1] = (tmp[1] < 0) ? 1 : -1;
+    tmp[0] += sign[0];
+    tmp[1] += sign[1];
+    while (tmp[0])
+    {
+        std::cout << tmp[0] << endl;
+        std::cout << tmp[1] << endl;
+        if (board[coor[1] + tmp[1]][coor[0] + tmp[0]]->name != '.')
+            return (0);
+        tmp[0] += sign[0];
+        tmp[1] += sign[1];
+    }
+    return (1);
+}

@@ -7,6 +7,14 @@
         "memory": "cpp",
         "type_traits": "cpp",
         "chrono": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "cstddef": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "new": "cpp",
+        "stdexcept": "cpp",
+        "ostream": "cpp"
     }
 }

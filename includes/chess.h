@@ -86,6 +86,11 @@ class c_board
         void    define_line(c_piece **board, int player);
         int     move(int coor[2], int turn);
         void    retrive_data(int coor[2], int turn);
+        int     o_move(int coor[2], int dest[2]);
+        int     v_move(int coor[2], int dest[2]);
+        int     k_move(int coor[2], int dest[2]);
+        int     d_move(int coor[2], int dest[2]);
+        void    init_move(int a, int b, int tmp[2]);
         int     move(c_king king, int coor[2], int dest[2]);
         int     move(c_queen queen, int coor[2], int dest[2]);
         int     move(c_bishop bishop, int coor[2], int dest[2]);

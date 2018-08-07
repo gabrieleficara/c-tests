@@ -51,7 +51,10 @@ int c_board::move(int coor[2], int turn)
                     break;
             }
         if (!command.compare("back"))
+        {
+            print_board();
             return (0);
+        }
         std::cout << "i don't understand, can you repeat please?" << endl;
     }
     return (end_move(coor, dest));
@@ -74,5 +77,5 @@ int c_board::turn(int turn, std::string player[2])
             return (0);
         }
     }
-    return ((turn == 1) ? 2 : 1);
+    return (/*(turn == 1) ? 2 : */1);
 }

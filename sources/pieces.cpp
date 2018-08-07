@@ -9,27 +9,40 @@ int     c_board::move(c_king king, int coor[2], int dest[2])
 
 int     c_board::move(c_queen queen, int coor[2], int dest[2])
 {
-    return (1);
+    if (o_move(coor, dest) || v_move(coor, dest) || d_move(coor, dest))
+        return (1);
+    return (0);
 }
 
 int     c_board::move(c_knight knight, int coor[2], int dest[2])
 {
-    return (1);
+    if (k_move(coor, dest))
+        return (1);
+    return (0);
 }
 
 int     c_board::move(c_bishop bishop, int coor[2], int dest[2])
 {
-    return (1);
+    if (d_move(coor, dest))
+        return (1);
+    return (0);
 }
 
 int     c_board::move(c_rook rook, int coor[2], int dest[2])
 {
-    return (1);
+    if (o_move(coor, dest) || v_move(coor, dest))
+        return (1);
+    return (0);
 }
 
 int     c_board::move(c_pawn pawn, int coor[2], int dest[2])
 {
-    return (1);
+    int dir;
+
+    dir = (board[coor[1]][coor[0]]->player == 1) ? 1 : -1;
+    if (dest[1] == coor[1] + dir && dest[0] == coor[0])
+        return (1);
+    return (0);
 }
 
 int     c_board::move(c_piece *ppiece, int coor[2], int dest[2])
