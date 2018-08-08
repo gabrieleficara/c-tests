@@ -20,6 +20,9 @@ c_board::c_board(void)
         j++;
     }
     define_board();
+    en_p[0] = -1;
+    en_p[1] = -1;
+    en_p[2] = 0;
 }
 
 c_board::~c_board(void)

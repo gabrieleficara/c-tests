@@ -59,6 +59,50 @@ int     c_board::k_move(int coor[2], int dest[2])
     return(0);
 }
 
+int     c_board::P_move(c_pawn pawn, int coor[2], int dest[2], int dir)
+{
+    if (dest[1] == coor[1] + (dir * 2) && dest[0] == coor[0]
+        && board[dest[1]][dest[0]]->name == '.'
+        && pawn.moved == 0)
+    {
+        en_p[0] = dest[0];
+        en_p[1] = dest[1];
+        en_p[2] = 2;
+        return (1);
+    }
+    if (dest[1] == coor[1] + dir && abs(dest[0] - coor[0]) == 1 && 
+        en_p[1] == coor[1] & abs(en_p[0] - coor[0]) == 1
+        && en_p[2] > 0)
+        return (1);
+    return (0);
+}
+
+int     c_board::p_move(c_pawn pawn, int coor[2], int dest[2])
+{
+    int dir;
+    int enemy;
+
+    if (pawn.player == 1)
+    {
+        enemy = 2;
+        dir = 1;
+    }
+    else
+    {
+        enemy = 1;
+        dir = -1;
+    }
+    if (dest[1] == coor[1] + dir && dest[0] == coor[0]
+        && board[dest[1]][dest[0]]->name == '.')
+        return (1);
+    if (P_move(pawn, coor, dest, dir))
+        return (1);
+    if (dest[1] == coor[1] + dir && abs(dest[0] - coor[0]) == 1 && 
+        board[dest[1]][dest[0]]->player == enemy)
+        return (1);
+    return (0);
+}
+
 int     c_board::d_move(int coor[2], int dest[2])
 {
     int tmp[2];

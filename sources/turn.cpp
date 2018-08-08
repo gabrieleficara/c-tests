@@ -76,6 +76,8 @@ int c_board::turn(int turn, std::string player[2])
             std::cout << "player " << player[turn - 1] << " wins!" << endl; 
             return (0);
         }
+        if (en_p[2] > 0)
+            en_p[2]--;
     }
     return (/*(turn == 1) ? 2 : */1);
 }

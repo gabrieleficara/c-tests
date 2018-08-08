@@ -12,6 +12,7 @@ class c_piece
         char name;
         int player;
         int color;
+        int moved;
             c_piece(void);
 };
 
@@ -82,6 +83,7 @@ class c_board
         int     turn(int turn,std::string player[2]);
         int     end_move(int coor[2], int dest[2]);
     private:
+        int     en_p[3];
         t_pieces pieces;
         void    define_line(c_piece **board, int player);
         int     move(int coor[2], int turn);
@@ -90,6 +92,8 @@ class c_board
         int     v_move(int coor[2], int dest[2]);
         int     k_move(int coor[2], int dest[2]);
         int     d_move(int coor[2], int dest[2]);
+        int     p_move(c_pawn pawn, int coor[2], int dest[2]);
+        int     P_move(c_pawn pawn, int coor[2], int dest[2], int dir);
         void    init_move(int a, int b, int tmp[2]);
         int     move(c_king king, int coor[2], int dest[2]);
         int     move(c_queen queen, int coor[2], int dest[2]);

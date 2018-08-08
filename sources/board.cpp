@@ -30,6 +30,7 @@ void c_board::define_line(c_piece **board, int player)
     while (i < 8)
     {
         board[i]->player = player;
+        board[i]->moved = 0;
         if (player == 1)
             board[i]->color = 37;
         else
@@ -54,6 +55,8 @@ void c_board::define_board(void)
         board[6][i]->player = 2;
         board[1][i]->color = 37;
         board[6][i]->color = 30;
+        board[1][i]->moved = 0;
+        board[6][i]->moved = 0;
         i++;
     }
 }
