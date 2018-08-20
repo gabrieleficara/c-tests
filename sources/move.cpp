@@ -63,7 +63,7 @@ int     c_board::P_move(c_pawn pawn, int coor[2], int dest[2], int dir)
 {
     if (dest[1] == coor[1] + (dir * 2) && dest[0] == coor[0]
         && board[dest[1]][dest[0]]->name == '.'
-        && pawn.moved == 0)
+        && (coor[1] == 1 || coor[1] == 6))
     {
         en_p[0] = dest[0];
         en_p[1] = dest[1];
@@ -73,7 +73,10 @@ int     c_board::P_move(c_pawn pawn, int coor[2], int dest[2], int dir)
     if (dest[1] == coor[1] + dir && abs(dest[0] - coor[0]) == 1 && 
         en_p[1] == coor[1] & abs(en_p[0] - coor[0]) == 1
         && en_p[2] > 0)
+    {
+        board[en_p[1]][en_p[0]] = &(pieces.empty);
         return (1);
+    }
     return (0);
 }
 

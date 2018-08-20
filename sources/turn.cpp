@@ -79,5 +79,5 @@ int c_board::turn(int turn, std::string player[2])
         if (en_p[2] > 0)
             en_p[2]--;
     }
-    return (/*(turn == 1) ? 2 : */1);
+    return ((turn == 1) ? 2 : 1);
 }
