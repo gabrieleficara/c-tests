@@ -130,3 +130,15 @@ int     c_board::d_move(int coor[2], int dest[2])
     }
     return (1);
 }
+
+int     c_board::cast(int coor[2], int dest[2])
+{
+    if (coor[0] == 4 && (coor[1] != 0 || coor[1] != 7) &&
+        (dest[0] != 0 || dest[0] != 7) &&
+        (dest[1] != 0 || dest[1] != 7))
+    {
+        if (board[coor[1]][coor[0]]->name == 'K' &&
+        board[dest[1]][dest[0]]->name == 'r')
+        
+    }
+}

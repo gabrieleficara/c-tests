@@ -13,7 +13,6 @@ c_board::c_board(void)
     j = 0;
     while (j < 8)
     {
-
         while (i < 8)
             board[j][i++] = &(pieces.empty);
         i = 0;
@@ -23,6 +22,7 @@ c_board::c_board(void)
     en_p[0] = -1;
     en_p[1] = -1;
     en_p[2] = 0;
+    castling = 0;
 }
 
 c_board::~c_board(void)

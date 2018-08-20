@@ -26,6 +26,8 @@ int c_board::end_move(int coor[2], int dest[2])
     ret = 1;
     if (board[dest[1]][dest[0]]->name == 'K')
         ret = 2;
+    if (castling == 1)
+        return (ret);
     board[dest[1]][dest[0]] = board[coor[1]][coor[0]];
     board[coor[1]][coor[0]] = &(pieces.empty);
     print_board();
@@ -47,7 +49,7 @@ int c_board::move(int coor[2], int turn)
                 dest[1] = command[1] - 49;
                 if (board[dest[1]][dest[0]]->player != turn &&
                     !(dest[1] == coor[1] && dest[0] == coor[0]) &&
-                    move(board[coor[1]][coor[0]], coor, dest))
+                    move(board[coor[1]][coor[0]], coor, dest), (castling = cast(coor, dest)))
                     break;
             }
         if (!command.compare("back"))

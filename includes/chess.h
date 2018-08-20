@@ -20,8 +20,7 @@ class c_king : public c_piece
 {
     public:
             c_king(void);
-    private:
-        int castling;
+            int castling;
 };
 
 class c_queen : public c_piece
@@ -85,6 +84,7 @@ class c_board
     private:
         int     en_p[3];
         t_pieces pieces;
+        int     castling;
         void    define_line(c_piece **board, int player);
         int     move(int coor[2], int turn);
         void    retrive_data(int coor[2], int turn);
@@ -92,6 +92,7 @@ class c_board
         int     v_move(int coor[2], int dest[2]);
         int     k_move(int coor[2], int dest[2]);
         int     d_move(int coor[2], int dest[2]);
+        int     cast(int coor[2], int dest[2]);
         int     p_move(c_pawn pawn, int coor[2], int dest[2]);
         int     P_move(c_pawn pawn, int coor[2], int dest[2], int dir);
         void    init_move(int a, int b, int tmp[2]);

@@ -36,7 +36,7 @@ void c_board::define_line(c_piece **board, int player)
         else
             board[i]->color = 30;
         i++; 
-    } 
+    }
 }
 
 void c_board::define_board(void)
