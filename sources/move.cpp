@@ -139,6 +139,6 @@ int     c_board::cast(int coor[2], int dest[2])
     {
         if (board[coor[1]][coor[0]]->name == 'K' &&
         board[dest[1]][dest[0]]->name == 'r')
-        
+            
     }
 }

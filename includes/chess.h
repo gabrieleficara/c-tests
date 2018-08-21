@@ -39,6 +39,7 @@ class c_rook : public c_piece
 {
     public:
             c_rook(void);
+            int s_pos;
 };
 
 class c_bishop : public c_piece

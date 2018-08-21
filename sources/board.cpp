@@ -47,6 +47,8 @@ void c_board::define_board(void)
     i = 0;
     define_line(board[0], 1);
     define_line(board[7], 2);
+    pieces.w_rooks.s_pos = 0;
+    pieces.b_rooks.s_pos = 7;
     while (i < 8)
     {
         board[1][i] = &(pieces.w_pawns);
