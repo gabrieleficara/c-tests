@@ -19,14 +19,14 @@ void c_board::retrive_data(int coor[2], int turn)
     }
 }
 
-int c_board::end_move(int coor[2], int dest[2])
+int c_board::end_move(int coor[2], int dest[2], int cas)
 {
     int ret;
 
     ret = 1;
     if (board[dest[1]][dest[0]]->name == 'K')
         ret = 2;
-    if (castling == 1)
+    if (cas == 1)
         return (ret);
     board[dest[1]][dest[0]] = board[coor[1]][coor[0]];
     board[coor[1]][coor[0]] = &(pieces.empty);
@@ -37,19 +37,22 @@ int c_board::end_move(int coor[2], int dest[2])
 int c_board::move(int coor[2], int turn)
 {
     int dest[2];
+    int cas;
     std::string command;
 
     while (1)
     {
         std::getline(std::cin, command);
         if (command[0] && command[1] && !command[2])
-            if (command[0] >= 'a' && command[0] <= 'h' && command[1] >= '1' && command[1] < '9')
+            if (command[0] >= 'a' && command[0] <= 'h' &&
+            command[1] >= '1' && command[1] < '9')
             {
                 dest[0] = command[0] - 97;
                 dest[1] = command[1] - 49;
-                if (board[dest[1]][dest[0]]->player != turn &&
-                    !(dest[1] == coor[1] && dest[0] == coor[0]) &&
-                    move(board[coor[1]][coor[0]], coor, dest), (castling = cast(coor, dest)))
+                if ((board[dest[1]][dest[0]]->player != turn ||
+                    (cas = cast(coor, dest, turn))) &&
+                    /*!(dest[1] == coor[1] && dest[0] == coor[0]) && */
+                    move(board[coor[1]][coor[0]], coor, dest) )
                     break;
             }
         if (!command.compare("back"))
@@ -59,7 +62,7 @@ int c_board::move(int coor[2], int turn)
         }
         std::cout << "i don't understand, can you repeat please?" << endl;
     }
-    return (end_move(coor, dest));
+    return (end_move(coor, dest, cas));
 }
 
 int c_board::turn(int turn, std::string player[2])
@@ -81,5 +84,5 @@ int c_board::turn(int turn, std::string player[2])
         if (en_p[2] > 0)
             en_p[2]--;
     }
-    return ((turn == 1) ? 2 : 1);
+    return (/*(turn == 1) ? 2 :*/ 1);
 }

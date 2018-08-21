@@ -22,7 +22,8 @@ c_board::c_board(void)
     en_p[0] = -1;
     en_p[1] = -1;
     en_p[2] = 0;
-    castling = 0;
+    castling[0] = 0;
+    castling[1] = 0;
 }
 
 c_board::~c_board(void)
@@ -44,7 +45,6 @@ c_piece::c_piece(void)
 c_king::c_king(void)
 {
     name = 'K';
-    castling = 0;
 }
 
 c_queen::c_queen(void)

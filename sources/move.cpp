@@ -131,14 +131,29 @@ int     c_board::d_move(int coor[2], int dest[2])
     return (1);
 }
 
-int     c_board::cast(int coor[2], int dest[2])
+int     c_board::cast(int coor[2], int dest[2], int turn)
 {
-    if (coor[0] == 4 && (coor[1] != 0 || coor[1] != 7) &&
-        (dest[0] != 0 || dest[0] != 7) &&
-        (dest[1] != 0 || dest[1] != 7))
-    {
-        if (board[coor[1]][coor[0]]->name == 'K' &&
-        board[dest[1]][dest[0]]->name == 'r')
-            
-    }
+    c_rook  *rook;
+    int     dir;
+
+    if (!castling[turn - 1])
+        if (board[coor[1]][coor[0]]->moved == 0 &&
+            board[coor[1]][coor[0]]->name == 'K' &&
+            board[dest[1]][dest[0]]->name == 'r')
+            {
+                rook = (turn == 1) ? &(pieces.w_rooks) : &(pieces.b_rooks);
+                if (((dest[0] == 0 && rook->moved < 2) ||
+                    (dest[0] == 0 && rook->moved % 2 == 0)) &&
+                    o_move(coor, dest))
+                    {
+                        dir = (dest[0] > 0) ? 1 : -1;
+                        board[coor[1]][coor[0] + (2 * dir)] = board[coor[1]][coor[0]];
+                        board[coor[1]][coor[0] + (dir)] = board[dest[1]][dest[0]];
+                        board[coor[1]][coor[0]] = &(pieces.empty);
+                        board[dest[1]][dest[0]] = &(pieces.empty);
+                        castling[turn - 1] = 1;
+                        return (1);
+                    }
+            }
+    return (0);
 }
