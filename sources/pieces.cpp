@@ -43,8 +43,8 @@ int     c_board::move(c_rook rook, int coor[2], int dest[2])
             else if (coor[0] == 7 &&
                 coor[1] == rook.s_pos)
                 board[coor[1]][coor[0]]->moved += 2;
-            return (1);
         }
+        return (1);
     }
     return (0);
 }

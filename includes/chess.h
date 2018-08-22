@@ -94,6 +94,7 @@ class c_board
         int     k_move(int coor[2], int dest[2]);
         int     d_move(int coor[2], int dest[2]);
         int     cast(int coor[2], int dest[2], int turn);
+        int     end_cast(int coor[2], int dest[2], int turn);
         int     p_move(c_pawn pawn, int coor[2], int dest[2]);
         int     P_move(c_pawn pawn, int coor[2], int dest[2], int dir);
         void    init_move(int a, int b, int tmp[2]);
@@ -104,6 +105,7 @@ class c_board
         int     move(c_rook rook, int coor[2], int dest[2]);
         int     move(c_pawn pawn, int coor[2], int dest[2]);
         int     move(c_piece *piece, int coor[2], int dest[2]);
+        void    transform(int dest[2]);
 };
 
 #endif

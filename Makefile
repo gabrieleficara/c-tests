@@ -11,7 +11,8 @@ SRC = sources/board.cpp \
 	  sources/turn.cpp \
 	  sources/init.cpp \
 	  sources/pieces.cpp \
-	  sources/move.cpp
+	  sources/move.cpp \
+	  sources/bonus.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

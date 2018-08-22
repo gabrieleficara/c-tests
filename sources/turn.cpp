@@ -26,10 +26,14 @@ int c_board::end_move(int coor[2], int dest[2], int cas)
     ret = 1;
     if (board[dest[1]][dest[0]]->name == 'K')
         ret = 2;
-    if (cas == 1)
-        return (ret);
-    board[dest[1]][dest[0]] = board[coor[1]][coor[0]];
-    board[coor[1]][coor[0]] = &(pieces.empty);
+    if (cas != 1)
+    {
+        board[dest[1]][dest[0]] = board[coor[1]][coor[0]];
+        board[coor[1]][coor[0]] = &(pieces.empty);
+        if (board[dest[1]][dest[0]]->name == 'p' &&
+            (dest[1] == 0 || dest[1] == 7))
+            transform(dest);
+    }
     print_board();
     return (ret);
 }
@@ -49,10 +53,10 @@ int c_board::move(int coor[2], int turn)
             {
                 dest[0] = command[0] - 97;
                 dest[1] = command[1] - 49;
-                if ((board[dest[1]][dest[0]]->player != turn ||
-                    (cas = cast(coor, dest, turn))) &&
+                if ((board[dest[1]][dest[0]]->player != turn &&
                     /*!(dest[1] == coor[1] && dest[0] == coor[0]) && */
-                    move(board[coor[1]][coor[0]], coor, dest) )
+                    move(board[coor[1]][coor[0]], coor, dest))
+                    || (cas = cast(coor, dest, turn)))
                     break;
             }
         if (!command.compare("back"))
