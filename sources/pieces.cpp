@@ -2,10 +2,16 @@
 
 int     c_board::move(c_king king, int coor[2], int dest[2])
 {
+    c_king     &kking = (board[coor[1]][coor[0]]->player == 1) ? pieces.w_kings : pieces.b_kings;
+
     if (abs(coor[0] - dest[0]) > 1 || abs(coor[1] - dest[1]) > 1)
     {
         if (c_check != 1)
+        {
             board[coor[1]][coor[0]]->moved = 1;
+            kking.pos[0] = dest[0];
+            kking.pos[1] = dest[1];
+        }
         return (0);
     }
     return (1);

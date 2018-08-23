@@ -31,11 +31,11 @@ int c_board::end_move(int coor[2], int dest[2], int cas)
         board[dest[1]][dest[0]] = board[coor[1]][coor[0]];
         board[coor[1]][coor[0]] = &(pieces.empty);
         if (board[dest[1]][dest[0]]->name == 'p' &&
-            (dest[1] == 0 || dest[1] == 7))
+            (dest[1] == 0 || dest[1] == 7) && ret != 2)
             transform(dest);
     }
-
     print_board();
+    check(board[dest[1]][dest[0]]->player);
     return (ret);
 }
 

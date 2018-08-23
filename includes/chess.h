@@ -80,7 +80,6 @@ class c_board
         c_piece ***board;
                 c_board(void);
                 ~c_board(void);
-        int     check;
         int     c_check;
         void    define_board(void);
         void    print_board(void);
@@ -111,7 +110,7 @@ class c_board
         int     move(c_piece *piece, int coor[2], int dest[2]);
         void    transform(int dest[2]);
         void    choose(int dest[2], int coor);
-//        void    check(void);
+        void    check(int turn);
 };
 
 #endif

@@ -18,7 +18,6 @@ c_board::c_board(void)
         i = 0;
         j++;
     }
-    check = 0;
     c_check = 0;
     define_board();
     en_p[0] = -1;
