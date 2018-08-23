@@ -21,6 +21,8 @@ class c_king : public c_piece
 {
     public:
             c_king(void);
+            int pos[2];
+            int check;
 };
 
 class c_queen : public c_piece
@@ -78,6 +80,8 @@ class c_board
         c_piece ***board;
                 c_board(void);
                 ~c_board(void);
+        int     check;
+        int     c_check;
         void    define_board(void);
         void    print_board(void);
         int     turn(int turn,std::string player[2]);
@@ -106,6 +110,8 @@ class c_board
         int     move(c_pawn pawn, int coor[2], int dest[2]);
         int     move(c_piece *piece, int coor[2], int dest[2]);
         void    transform(int dest[2]);
+        void    choose(int dest[2], int coor);
+//        void    check(void);
 };
 
 #endif

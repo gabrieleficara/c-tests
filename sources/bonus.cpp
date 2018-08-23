@@ -34,7 +34,8 @@ int     c_board::cast(int coor[2], int dest[2], int turn)
     if (!castling[turn - 1])
         if (board[coor[1]][coor[0]]->moved == 0 &&
             board[coor[1]][coor[0]]->name == 'K' &&
-            board[dest[1]][dest[0]]->name == 'r')
+            board[dest[1]][dest[0]]->name == 'r' &&
+            board[dest[1]][dest[0]]->player == turn)
             {
                 rook = (turn == 1) ? &(pieces.w_rooks) : &(pieces.b_rooks);
                 if (((dest[0] == 0 && rook->moved < 2) ||
@@ -84,18 +85,5 @@ void     c_board::transform(int dest[2])
             }
         std::cout << "i don't understand, can you repeat please?" << endl;
     }
-    if (coor > 2)
-    {
-        if (coor > 3)
-            board[dest[1]][dest[0]] = &((dest[1] == 0) ? pieces.b_knights : pieces.w_knights);
-        else
-            board[dest[1]][dest[0]] = &((dest[1] == 0) ? pieces.b_bishops : pieces.w_bishops);
-    }
-    else
-    {
-        if (coor > 1)
-            board[dest[1]][dest[0]] = &((dest[1] == 0) ? pieces.b_rooks : pieces.w_rooks);
-        else
-            board[dest[1]][dest[0]] = &((dest[1] == 0) ? pieces.b_queens : pieces.w_queens);
-    }
+    choose(dest, coor);
 }

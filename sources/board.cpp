@@ -12,6 +12,8 @@ void c_board::define_line(c_piece **board, int player)
         board[2] = &(pieces.w_bishops);
         board[3] = &(pieces.w_queens);
         board[4] = &(pieces.w_kings);
+        pieces.w_kings.pos[0] = 4;
+        pieces.w_kings.pos[1] = 0;
         board[5] = &(pieces.w_bishops);
         board[6] = &(pieces.w_knights);
         board[7] = &(pieces.w_rooks);
@@ -23,6 +25,8 @@ void c_board::define_line(c_piece **board, int player)
         board[2] = &(pieces.b_bishops);
         board[3] = &(pieces.b_queens);
         board[4] = &(pieces.b_kings);
+        pieces.b_kings.pos[0] = 4;
+        pieces.b_kings.pos[1] = 7;
         board[5] = &(pieces.b_bishops);
         board[6] = &(pieces.b_knights);
         board[7] = &(pieces.b_rooks);

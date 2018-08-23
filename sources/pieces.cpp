@@ -3,7 +3,11 @@
 int     c_board::move(c_king king, int coor[2], int dest[2])
 {
     if (abs(coor[0] - dest[0]) > 1 || abs(coor[1] - dest[1]) > 1)
+    {
+        if (c_check != 1)
+            board[coor[1]][coor[0]]->moved = 1;
         return (0);
+    }
     return (1);
 }
 
@@ -25,7 +29,8 @@ int     c_board::move(c_bishop bishop, int coor[2], int dest[2])
 {
     if (d_move(coor, dest))
     {
-        board[coor[1]][coor[0]]->moved = 1;
+        if (c_check != 1)
+            board[coor[1]][coor[0]]->moved = 1;
         return (1);
     }
     return (0);
@@ -35,7 +40,7 @@ int     c_board::move(c_rook rook, int coor[2], int dest[2])
 {
     if (o_move(coor, dest) || v_move(coor, dest))
     {
-        if (rook.moved == 3)
+        if (rook.moved == 3 && c_check != 1)
         {
             if (coor[0] == 0 &&
                 coor[1] == rook.s_pos)
@@ -53,7 +58,8 @@ int     c_board::move(c_pawn pawn, int coor[2], int dest[2])
 {
     if (p_move(pawn, coor, dest))
     {
-        board[coor[1]][coor[0]]->moved = 1;
+        if (c_check != 1)
+            board[coor[1]][coor[0]]->moved = 1;
         return (1);
     }
     return (0);
