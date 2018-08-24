@@ -91,7 +91,7 @@ class c_board
         int     castling[2];
         void    define_line(c_piece **board, int player);
         int     move(int coor[2], int turn);
-        void    retrive_data(int coor[2], int turn);
+        int     retrive_data(int coor[2], int turn);
         int     o_move(int coor[2], int dest[2]);
         int     v_move(int coor[2], int dest[2]);
         int     k_move(int coor[2], int dest[2]);
@@ -111,6 +111,7 @@ class c_board
         void    transform(int dest[2]);
         void    choose(int dest[2], int coor);
         void    check(int turn);
+        int     stop_game(std::string command, int turn);
 };
 
 #endif

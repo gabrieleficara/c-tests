@@ -41,3 +41,32 @@ void     c_board::check(int turn)
     }
     c_check = 0;
 }
+
+int     c_board::stop_game(std::string command, int turn)
+{
+    std::string com;
+
+    if (!command.compare("resign"))
+    {
+        std::cout << "player " << turn << " resigned." << endl;
+        std::cout << "player " << ((turn == 1) ? 2 : 1) << " wins!" << endl;
+        return (0);
+    }
+    if (!command.compare("draw"))
+    {
+        while (1)
+        {
+            std::cout << "player " << turn << " proposed a draw, confirm? (y/n)" << endl;
+            std::getline(std::cin, com);
+            if (com[0] && !com[1])
+                if (com[0] == 'y' || com[0] == 'n')
+                {
+                    if (com[0] == 'y')
+                        return (0);
+                    else
+                        return (1);
+                }
+        }
+    }
+    return(1);
+}

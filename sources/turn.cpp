@@ -1,6 +1,6 @@
 #include "chess.h"
 
-void c_board::retrive_data(int coor[2], int turn)
+int     c_board::retrive_data(int coor[2], int turn)
 {
     std::string command;
 
@@ -15,8 +15,11 @@ void c_board::retrive_data(int coor[2], int turn)
                 if (board[coor[1]][coor[0]]->player == turn)
                     break;
             }
+        if (!stop_game(command, turn))
+            return (0);
         std::cout << "i don't understand, can you repeat please?" << endl;
     }
+    return (1);
 }
 
 int c_board::end_move(int coor[2], int dest[2], int cas)
@@ -78,15 +81,16 @@ int c_board::turn(int turn, std::string player[2])
     while (i == 0)
     {
         std::cout << "Player " << player[turn - 1] << " choose a piece: " << endl;
-        retrive_data(coor, turn);
+        if (!retrive_data(coor, turn))
+            return (0);
         std::cout << "where do you want to move?" << endl;
         if ((i = move(coor, turn)) == 2)
         {
-            std::cout << "player " << player[turn - 1] << " wins!" << endl; 
+            std::cout << "player " << ((turn == 1) ? 2 : 1) << " wins!" << endl; 
             return (0);
         }
         if (en_p[2] > 0)
             en_p[2]--;
     }
-    return (/*(turn == 1) ? 2 :*/ 1);
+    return ((turn == 1) ? 2 : 1);
 }
