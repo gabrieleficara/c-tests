@@ -39,7 +39,7 @@ int     c_board::cast(int coor[2], int dest[2], int turn)
             {
                 rook = (turn == 1) ? &(pieces.w_rooks) : &(pieces.b_rooks);
                 if (((dest[0] == 0 && rook->moved < 2) ||
-                    (dest[0] == 0 && rook->moved % 2 == 0)) &&
+                    (dest[0] == 7 && rook->moved % 2 == 0)) &&
                     o_move(coor, dest))
                         return(end_cast(coor, dest, turn));
             }
